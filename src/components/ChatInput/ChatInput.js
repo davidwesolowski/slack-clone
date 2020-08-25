@@ -3,10 +3,12 @@ import firebase from 'firebase';
 import { TextField, Button } from '@material-ui/core';
 import db from '../../firebase';
 import './ChatInput.css';
+import { useStateValue } from '../../StateProvider';
 
 const ChatInput = ({ id }) => {
 
     const [input, setInput] = useState('');
+    const { state: { user } } = useStateValue();
 
     const handleOnChange = (event) => {
         if (event.target) setInput(event.target.value);
@@ -18,8 +20,8 @@ const ChatInput = ({ id }) => {
             db.collection('rooms').doc(id).collection('messages').add({
                 message: input,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                user: 'test',
-                userImage: 'test'
+                user: user.displayName,
+                userImage: user.photoURL
             });
             setInput('');
         }

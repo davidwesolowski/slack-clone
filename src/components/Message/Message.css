@@ -5,12 +5,6 @@
     padding: 1rem;
 }
 
-.message > img {
-    height: 5rem;
-    width: 5rem;
-    object-fit: contain;
-}
-
 .message__info {
     padding-left: 1rem;
 }
