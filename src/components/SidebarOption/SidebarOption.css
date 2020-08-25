@@ -16,3 +16,15 @@
     font-size: 3.2rem !important;
     padding: .8rem;
 }
+
+.sidebarOption__channel {
+    padding: .7rem 0;
+}
+
+.sidebarOption__hash {
+    padding: 1rem;
+}
+
+.sidebarOption > h3 {
+    font-weight: 500;
+}
