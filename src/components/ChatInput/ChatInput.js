@@ -5,7 +5,7 @@ import db from '../../firebase';
 import './ChatInput.css';
 import { useStateValue } from '../../StateProvider';
 
-const ChatInput = ({ id }) => {
+const ChatInput = ({ id, messagesRef }) => {
 
     const [input, setInput] = useState('');
     const { state: { user } } = useStateValue();
@@ -14,15 +14,19 @@ const ChatInput = ({ id }) => {
         if (event.target) setInput(event.target.value);
     }
 
-    const handleOnSubmit = (event) => {
+    const handleOnSubmit = async (event) => {
         event.preventDefault();
         if (input) {
-            db.collection('rooms').doc(id).collection('messages').add({
+            await db.collection('rooms').doc(id).collection('messages').add({
                 message: input,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 user: user.displayName,
                 userImage: user.photoURL
             });
+            const containerHeight = messagesRef.current.scrollHeight;
+
+            messagesRef.current.scrollTop = containerHeight;
+            
             setInput('');
         }
     }

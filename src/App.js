@@ -1,16 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useStateValue } from './StateProvider';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import Chat from './components/Chat/Chat';
-import './App.css';
-import { useStateValue } from './StateProvider';
 import Login from './components/Login/Login';
+import './App.css';
 
 const App = () => {
 
   const { state: { user }} = useStateValue();
-
   return (
     <div className="app">
       <Router>

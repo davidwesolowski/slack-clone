@@ -9,6 +9,10 @@
     padding-left: 1rem;
 }
 
+.message__info > p {
+    word-break: break-all;
+}
+
 .message__timestamp {
     color: gray;
     font-weight: 300;
