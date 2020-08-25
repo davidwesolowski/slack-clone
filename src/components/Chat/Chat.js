@@ -9,10 +9,14 @@ const Chat = () => {
 
     const { id } = useParams();
     const [roomDetails, setRoomDetails] = useState(null);
-
+    const [roomMessages, setRoomMessages] = useState([]);
+    console.log(roomDetails);
     useEffect(() => {
         db.collection('rooms').doc(id).onSnapshot(snapshot => setRoomDetails(snapshot.data()));
+        db.collection('rooms').doc(id).collection('messages').orderBy('timestamp', 'asc').onSnapshot(snapshot => setRoomMessages(snapshot.docs.map(doc => doc.data())))
     }, [id]);
+
+    console.log(roomMessages)
 
     return (
         <div className="chat">
@@ -28,6 +32,11 @@ const Chat = () => {
                         <InfoOutlinedIcon /> Details
                     </p>
                 </div>
+            </div>
+            <div className="chat__messages">
+                {
+                    
+                }
             </div>
         </div>
     )
