@@ -1,0 +1,16 @@
+.chatInput {
+    grid-row: 3 / 4;
+    padding: 1rem;
+}
+
+.chatInput > form > button {
+    display: none;
+}
+
+.chatInput > form > .MuiFormControl-root {
+    width: 97% !important;
+}
+
+.MuiInputBase-root {
+    font-size: 1.3rem !important;
+}

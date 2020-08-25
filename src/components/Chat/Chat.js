@@ -5,13 +5,13 @@ import { useParams } from 'react-router-dom';
 import db from '../../firebase';
 import './Chat.css';
 import Message from '../Message/Message';
+import ChatInput from '../ChatInput/ChatInput';
 
 const Chat = () => {
 
     const { id } = useParams();
     const [roomDetails, setRoomDetails] = useState(null);
     const [roomMessages, setRoomMessages] = useState([]);
-    console.log(roomDetails);
     useEffect(() => {
         db.collection('rooms').doc(id).onSnapshot(snapshot => setRoomDetails(snapshot.data()));
         db.collection('rooms').doc(id).collection('messages').orderBy('timestamp', 'asc').onSnapshot(snapshot => setRoomMessages(snapshot.docs.map(doc => doc.data())))
@@ -37,6 +37,7 @@ const Chat = () => {
                     roomMessages.map(({ message, timestamp, user, userImage }) => <Message key={timestamp} message={message} timestamp={timestamp} user={user} userImage={userImage} />)
                 }
             </div>
+            <ChatInput id={id}/>
         </div>
     )
 }
