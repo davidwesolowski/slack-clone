@@ -3,9 +3,9 @@ import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import { useParams } from 'react-router-dom';
 import db from '../../firebase';
-import './Chat.css';
 import Message from '../Message/Message';
 import ChatInput from '../ChatInput/ChatInput';
+import './Chat.css';
 
 const Chat = () => {
 
