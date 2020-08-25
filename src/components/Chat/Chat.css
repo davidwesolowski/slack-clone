@@ -34,3 +34,7 @@
     font-size: 1.8rem !important;
     margin-right: .5rem;
 }
+
+.chat__messages {
+    overflow-y: scroll;
+}

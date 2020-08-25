@@ -4,6 +4,7 @@ import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import { useParams } from 'react-router-dom';
 import db from '../../firebase';
 import './Chat.css';
+import Message from '../Message/Message';
 
 const Chat = () => {
 
@@ -15,8 +16,6 @@ const Chat = () => {
         db.collection('rooms').doc(id).onSnapshot(snapshot => setRoomDetails(snapshot.data()));
         db.collection('rooms').doc(id).collection('messages').orderBy('timestamp', 'asc').onSnapshot(snapshot => setRoomMessages(snapshot.docs.map(doc => doc.data())))
     }, [id]);
-
-    console.log(roomMessages)
 
     return (
         <div className="chat">
@@ -35,7 +34,7 @@ const Chat = () => {
             </div>
             <div className="chat__messages">
                 {
-                    
+                    roomMessages.map(({ message, timestamp, user, userImage }) => <Message key={timestamp} message={message} timestamp={timestamp} user={user} userImage={userImage} />)
                 }
             </div>
         </div>
