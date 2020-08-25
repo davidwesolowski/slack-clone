@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
+import Chat from './components/Chat/Chat';
 import './App.css';
 
 const App = () => {
@@ -12,6 +13,9 @@ const App = () => {
         <div className="app__body">
           <Sidebar />
           <Switch>
+            <Route path="/room/:id">
+              <Chat />
+            </Route>
           </Switch>
         </div>
       </Router>
