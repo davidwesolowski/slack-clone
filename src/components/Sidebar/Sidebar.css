@@ -27,6 +27,7 @@
     align-items: center;
     font-size: 1.6rem;
     font-weight: 400;
+    word-break: all;
 }
 
 .sidebar__info > h3 > .MuiSvgIcon-root {

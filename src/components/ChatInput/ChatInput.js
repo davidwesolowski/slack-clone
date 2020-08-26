@@ -3,24 +3,30 @@ import firebase from 'firebase';
 import { TextField, Button } from '@material-ui/core';
 import db from '../../firebase';
 import './ChatInput.css';
+import { useStateValue } from '../../StateProvider';
 
-const ChatInput = ({ id }) => {
+const ChatInput = ({ id, messagesRef }) => {
 
     const [input, setInput] = useState('');
+    const { state: { user } } = useStateValue();
 
     const handleOnChange = (event) => {
         if (event.target) setInput(event.target.value);
     }
 
-    const handleOnSubmit = (event) => {
+    const handleOnSubmit = async (event) => {
         event.preventDefault();
         if (input) {
-            db.collection('rooms').doc(id).collection('messages').add({
+            await db.collection('rooms').doc(id).collection('messages').add({
                 message: input,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                user: 'test',
-                userImage: 'test'
+                user: user.displayName,
+                userImage: user.photoURL
             });
+            const containerHeight = messagesRef.current.scrollHeight;
+
+            messagesRef.current.scrollTop = containerHeight;
+            
             setInput('');
         }
     }

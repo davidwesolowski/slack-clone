@@ -5,14 +5,12 @@
     padding: 1rem;
 }
 
-.message > img {
-    height: 5rem;
-    width: 5rem;
-    object-fit: contain;
-}
-
 .message__info {
     padding-left: 1rem;
+}
+
+.message__info > p {
+    word-break: break-all;
 }
 
 .message__timestamp {
